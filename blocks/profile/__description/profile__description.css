@@ -1,0 +1,11 @@
+.profile__description {
+	padding-top: 16px;
+	color: #fff;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 22px;
+	text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 350px;
+}
