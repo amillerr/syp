@@ -1,0 +1,11 @@
+@import url(./__img/element__img.css);
+@import url(./__description/element__description.css);
+@import url(./__name/element__name.css);
+@import url(./__btn/element__btn.css);
+
+.element {
+	border-radius: 10px;
+	overflow: hidden;
+	display: flex;
+  flex-direction: column;
+}
