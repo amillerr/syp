@@ -7,6 +7,20 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	cursor: pointer;
+	transition: .2s;
 }
 
+.profile__edit-btn:focus {
+	outline: none;
+}
 
+.profile__edit-btn:hover {
+	opacity: .6;
+}
+
+@media screen and (max-width: 582px) { 
+	.profile__edit-btn {
+		width: 18px;
+		height: 18px;
+	}
+}

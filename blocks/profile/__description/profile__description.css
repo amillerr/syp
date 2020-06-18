@@ -9,3 +9,10 @@
   overflow: hidden;
   max-width: 350px;
 }
+
+@media screen and (max-width: 582px) {
+	.profile__description {
+		font-size: 14px;
+		line-height: 17px;
+	}
+}

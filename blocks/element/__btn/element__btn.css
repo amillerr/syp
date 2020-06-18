@@ -7,4 +7,10 @@
 	background-color: transparent;
   border: none;
   margin: auto 15px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.element__btn:hover {
+	opacity: .6;
 }
