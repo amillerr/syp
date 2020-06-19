@@ -21,6 +21,7 @@ function formSubmitHandler(evt) {
 
   nameProfile.textContent = newName.value;
  	descriptionProfile.textContent = newDescription.value;
+  popup.classList.remove('popup_opened');
 }
 
 openBtn.addEventListener('click', popupToggle)
