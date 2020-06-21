@@ -10,7 +10,7 @@ let descriptionProfile = document.querySelector('.profile__description');
 
 
 const popupToggle = function () {
-	if (popup.classList.contains('popup_opened')) {
+	if (!popup.classList.contains('popup_opened')) {
 		  newName.value = nameProfile.textContent;
 		 	newDescription.value = descriptionProfile.textContent;
  		}
