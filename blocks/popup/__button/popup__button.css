@@ -12,10 +12,6 @@
 	transition: .2s;
 }
 
-.popup__button:focus {
-	outline: none;
-}
-
 .popup__button:hover {
 	opacity: .8;
 }

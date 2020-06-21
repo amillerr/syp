@@ -10,10 +10,6 @@
 	transition: .2s;
 }
 
-.profile__edit-btn:focus {
-	outline: none;
-}
-
 .profile__edit-btn:hover {
 	opacity: .6;
 }
