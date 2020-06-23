@@ -9,6 +9,7 @@
   margin: 0 15px 3px;
   cursor: pointer;
   transition: .2s;
+  box-shadow: none;
 }
 
 .element__btn:hover {

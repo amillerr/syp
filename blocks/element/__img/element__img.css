@@ -1,4 +1,7 @@
 .element__img {
-	width: 282px;
-	height: 282px;
+	flex-basis: 282px;
+	max-height: 282px;
+	object-fit: cover;
+	max-width: 100%;
+	align-self: stretch;
 }
