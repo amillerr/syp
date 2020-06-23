@@ -2,11 +2,10 @@
 	width: 20px;
 	height: 18px;
 	background-image: url('../../../images/button/like.svg');
-	background-repeat: no-repeat;
-	background-size: cover;
+	object-fit: cover;
 	background-color: transparent;
 	border: none;
-  margin: 0 15px 3px;
+  margin: 0 15px 3px 0;
   cursor: pointer;
   transition: .2s;
   box-shadow: none;
