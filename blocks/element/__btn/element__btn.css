@@ -1,12 +1,12 @@
 .element__btn {
-	width: 20px;
+	width: 21px;
 	height: 18px;
 	background-image: url('../../../images/button/like.svg');
 	background-repeat: no-repeat;
 	object-fit: cover;
 	background-color: transparent;
 	border: none;
-  margin: 0 15px 3px 0;
+  margin: 0 17px 3px 0;
   cursor: pointer;
   transition: .2s;
   box-shadow: none;
