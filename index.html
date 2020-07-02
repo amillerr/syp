@@ -1,96 +1,76 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="pages/index.css">
-	<title>Место</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Место</title>
 </head>
 <body>
-	<div class="root">
-		<div class="page">
-			<!-- Header -->
-			<header class="header">
-				<img src="./images/header/header__logo.svg" alt="Место" class="header__logo">
-			</header>
-			<!-- Profile -->
-			<section class="profile">
-				<img src="./images/profile/profile__avatar.jpg" alt="Аватар" class="profile__avatar">
-				<div class="profile__info">
-					<div class="profile__edit-form">
-						<h1 class="profile__name">Жак-Ив Кусто</h1>
-						<button class="profile__edit-btn" type="button" aria-label="Редактировать"></button>
-					</div>
-					<p class="profile__description">Исследователь океана</p>
-				</div>
-					<button class="profile__add-btn" type="button" aria-label="Добавить"></button>
-			</section>
-			<!-- Elements -->
-			<section class="elements">
-				<ul class="elements__list">
-					<li class="element">
-						<img src="./images/elements/iseltwald.jpg" alt="Изельтвальд" class="element__img">
-						<div class="element__description">
-							<h2 class="element__name">Изельтвальд, Швейцария</h2>
-							<button class="element__btn" type="button" aria-label="Нравиться"></button>
-						</div>
-					</li>
-					<li class="element">
-						<img src="./images/elements/nordfjord.jpg" alt="Нордфьорд" class="element__img">
-						<div class="element__description">
-							<h2 class="element__name">Нордфьорд, Норвегия</h2>
-							<button class="element__btn" type="button" aria-label="Нравиться"></button>
-						</div>
-					</li>
-					<li class="element">
-						<img src="./images/elements/braies.jpg" alt="Брайес" class="element__img">
-						<div class="element__description">
-							<h2 class="element__name">Брайес, Италия</h2>
-							<button class="element__btn" type="button" aria-label="Нравиться"></button>
-						</div>
-					</li>
-					<li class="element">
-						<img src="./images/elements/maya-bay.jpg" alt="Майя Бэй" class="element__img">
-						<div class="element__description">
-							<h2 class="element__name">Майя Бэй, Тайланд</h2>
-							<button class="element__btn" type="button" aria-label="Нравиться"></button>
-						</div>
-					</li>
-					<li class="element">
-						<img src="./images/elements/reikjavik.jpg" alt="Рейкьявик" class="element__img">
-						<div class="element__description">
-							<h2 class="element__name">Рейкьявик, Исландия</h2>
-							<button class="element__btn" type="button" aria-label="Нравиться"></button>
-						</div>
-					</li>
-					<li class="element">
-						<img src="./images/elements/perito-moreno.jpg" alt="Перито-Морено" class="element__img">
-						<div class="element__description">
-							<h2 class="element__name">Перито-Морено, Аргентина</h2>
-							<button class="element__btn" type="button" aria-label="Нравиться"></button>
-						</div>
-					</li>
-				</ul>
-			</section>
-			<!-- Popup -->
-			<section class="popup">
-				<div class="popup__container">
-					<button class="popup__close" type="button" aria-label="Закрыть"></button>
-					<h3 class="popup__title">Редактировать профиль</h3>
-					<form action="#" method="get" name="popup-edit" class="popup__form">
-						<input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Имя" value="Жак-Ив Кусто">
-						<input type="text" class="popup__input popup__input_type_description" name="description" placeholder="Описание" value="Исследователь океана">
-						<button class="popup__button" type="submit">Сохранить</button>
-					</form>
-				</div>
-			</section>
-			<!-- Footer -->
-			<footer class="footer">
-				<p class="footer__copyright">&copy; 2020. Артём Аксёнов</p>
-			</footer>
-		</div>
-	</div>
-	<script src="./scripts/popup.js"></script>
+<div class="root">
+  <div class="page">
+    <!-- Header -->
+    <header class="header">
+      <img src="./images/header/header__logo.svg" alt="Место" class="header__logo">
+    </header>
+    <!-- Profile -->
+    <section class="profile">
+      <img src="./images/profile/profile__avatar.jpg" alt="Аватар" class="profile__avatar">
+      <div class="profile__info">
+        <div class="profile__edit-form">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-btn" type="button" aria-label="Редактировать"></button>
+        </div>
+        <p class="profile__description">Исследователь океана</p>
+      </div>
+      <button class="profile__add-btn" type="button" aria-label="Добавить"></button>
+    </section>
+    <!-- Elements -->
+    <section class="elements">
+      <ul class="elements__list">
+
+      </ul>
+    </section>
+    <!-- Popup profile edit -->
+    <section class="popup popup__profile">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="Закрыть"></button>
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form action="#" method="get" name="popup-edit" class="popup__form popup__form_edit">
+          <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Имя">
+          <input type="text" class="popup__input popup__input_type_description" name="description" placeholder="Описание">
+          <button class="popup__button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
+    <!-- Popup place add -->
+    <section class="popup popup__place">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="Закрыть"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form action="#" method="get" name="popup-add" class="popup__form_add">
+          <input type="text" class="popup__input popup__input_type_place" name="place-name" placeholder="Название">
+          <input type="url" class="popup__input popup__input_type_link" name="link" placeholder="Ссылка на картинку">
+          <button class="popup__button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020. Артём Аксёнов</p>
+    </footer>
+  </div>
+</div>
+<template id="elements-template">
+  <li class="element">
+    <img src="" class="element__img">
+    <div class="element__description">
+      <h2 class="element__name"></h2>
+      <button class="element__btn" type="button" aria-label="Нравиться"></button>
+    </div>
+  </li>
+</template>
+<script src="./scripts/script.js"></script>
 </body>
 </html>
 
