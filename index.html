@@ -34,7 +34,7 @@
     <!-- Popup profile edit -->
     <section class="popup popup__profile">
       <div class="popup__container">
-        <button class="popup__close" type="button" aria-label="Закрыть"></button>
+        <button class="popup__close popup__close_edit" type="button" aria-label="Закрыть"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form action="#" method="get" name="popup-edit" class="popup__form popup__form_edit">
           <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Имя">
@@ -43,10 +43,10 @@
         </form>
       </div>
     </section>
-    <!-- Popup place add -->
+    <!-- Popup element add -->
     <section class="popup popup__place">
       <div class="popup__container">
-        <button class="popup__close" type="button" aria-label="Закрыть"></button>
+        <button class="popup__close popup__close_place" type="button" aria-label="Закрыть"></button>
         <h3 class="popup__title">Новое место</h3>
         <form action="#" method="get" name="popup-add" class="popup__form_add">
           <input type="text" class="popup__input popup__input_type_place" name="place-name" placeholder="Название">
@@ -54,6 +54,14 @@
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
       </div>
+    </section>
+    <!-- Popup Image (preview) -->
+    <section class="popup popup__image">
+      <figure class="popup__image_container">
+        <button class="popup__close popup__close_image" type="button" aria-label="Закрыть"></button>
+        <img src="" alt="" class="popup__preview">
+        <figcaption class="popup__image_name"></figcaption>
+      </figure>
     </section>
     <!-- Footer -->
     <footer class="footer">
@@ -70,6 +78,7 @@
     </div>
   </li>
 </template>
+<script src="./scripts/elements.js"></script>
 <script src="./scripts/script.js"></script>
 </body>
 </html>
