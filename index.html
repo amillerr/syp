@@ -27,9 +27,7 @@
     </section>
     <!-- Elements -->
     <section class="elements">
-      <ul class="elements__list">
-
-      </ul>
+      <ul class="elements__list"></ul>
     </section>
     <!-- Popup profile edit -->
     <section class="popup popup__profile">
@@ -44,11 +42,11 @@
       </div>
     </section>
     <!-- Popup element add -->
-    <section class="popup popup__place">
+    <section class="popup popup__element">
       <div class="popup__container">
-        <button class="popup__close popup__close_place" type="button" aria-label="Закрыть"></button>
+        <button class="popup__close popup__close_element" type="button" aria-label="Закрыть"></button>
         <h3 class="popup__title">Новое место</h3>
-        <form action="#" method="get" name="popup-add" class="popup__form_add">
+        <form action="#" method="get" name="popup-add" class="popup__form popup__form_add">
           <input type="text" class="popup__input popup__input_type_place" name="place-name" placeholder="Название">
           <input type="url" class="popup__input popup__input_type_link" name="link" placeholder="Ссылка на картинку">
           <button class="popup__button" type="submit">Сохранить</button>
@@ -60,7 +58,7 @@
       <figure class="popup__image_container">
         <button class="popup__close popup__close_image" type="button" aria-label="Закрыть"></button>
         <img src="" alt="" class="popup__preview">
-        <figcaption class="popup__image_name"></figcaption>
+        <figcaption class="popup__image-title"></figcaption>
       </figure>
     </section>
     <!-- Footer -->
@@ -80,7 +78,7 @@
   </li>
 </template>
 <script src="./scripts/elements.js"></script>
-<script src="./scripts/script.js"></script>
+<script src="./scripts/popups.js"></script>
 </body>
 </html>
 
