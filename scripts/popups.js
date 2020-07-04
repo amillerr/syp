@@ -39,6 +39,8 @@ function showElem(elem) {
   element.querySelector('.element__img').alt = elem.name
 
   element.querySelector('.element__img').addEventListener('click', popupPreview)
+  element.querySelector('.element__btn_like').addEventListener('click', likeElement)
+  element.querySelector('.element__btn_delete').addEventListener('click', removeElement)
 
   return element
 
@@ -89,8 +91,16 @@ function popupPreview(e) {
   popupToggle(popupImage)
 }
 
-// Реализация кнопки 'Нравиться'
+// Кнопка "Нравится"
+function likeElement(e) {
+  e.target.classList.toggle('element__btn_like_active')
+}
 
+// Удаление Элемента
+function removeElement(e) {
+  const element = e.target.closest('.element')
+  element.remove()
+}
 
 // Изменение Данных профиля
 function formSubmitHandler(e) {
