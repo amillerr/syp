@@ -6,7 +6,6 @@ const openBtn = profile.querySelector('.profile__edit-btn')
 const addBtn = profile.querySelector('.profile__add-btn')
 
 // Переменные Popup Edit
-const popup = document.querySelector('.popup')
 const popupProfile = document.querySelector('.popup__profile')
 const formEdit = popupProfile.querySelector('.popup__form_edit')
 const closeEdit = popupProfile.querySelector('.popup__close_edit')
@@ -33,24 +32,25 @@ const elementPreview = popupImage.querySelector('.popup__preview')
 const elementTitle =  popupImage.querySelector('.popup__image-title')
 
 // Выводим заготовленный массив элементов
-
 function showElem(elem) {
   const element = elementTemplate.content.cloneNode(true)
-
   element.querySelector('.element__name').textContent = elem.name
   element.querySelector('.element__img').src = elem.link
   element.querySelector('.element__img').alt = elem.name
 
-  placeList.prepend(element)
+  element.querySelector('.element__img').addEventListener('click', popupPreview)
+
+  return element
+
 }
 
-// Перебираем массив
-initialElements.forEach(elem => {
-  showElem(elem)
+// Отображение элементов массива
+initialElements.forEach(function (elem) {
+  placeList.append(showElem(elem))
 })
 
 // Открытие/Закрытие попапа
-const popupToggle = function(popup) {
+const popupToggle = popup => {
   popup.classList.toggle('popup_opened')
 }
 
@@ -68,13 +68,33 @@ function openPopupAdd() {
   popupToggle(popupElement)
 }
 
+// Добавить новый элемент
+function elemSubmitHandler(e) {
+  e.preventDefault()
+  const addElem = {
+    name: newElementName.value,
+    link: newElementLink.value,
+  }
+  placeList.prepend(showElem(addElem))
+  popupToggle(popupElement)
+}
+
 // Popup Preview
+function popupPreview(e) {
+  const elem = e.target
+  const elemTitle = e.target.closest('.element')
+  elementPreview.src = elem.src
+  elementPreview.alt = elem.alt
+  elementTitle.textContent = elemTitle.textContent
+  popupToggle(popupImage)
+}
+
+// Реализация кнопки 'Нравиться'
 
 
 // Изменение Данных профиля
 function formSubmitHandler(e) {
   e.preventDefault()
-
   nameProfile.textContent = newName.value
   descriptionProfile.textContent = newDescription.value
   popupToggle(popupProfile)
@@ -85,4 +105,6 @@ openBtn.addEventListener('click', openPopupEdit)
 addBtn.addEventListener('click', openPopupAdd)
 closeEdit.addEventListener('click', () => {popupToggle(popupProfile)})
 closeAdd.addEventListener('click', () => {popupToggle(popupElement)})
+closePreview.addEventListener('click', () => {popupToggle(popupImage)})
+formAdd.addEventListener('submit', elemSubmitHandler)
 formEdit.addEventListener('submit', formSubmitHandler)

@@ -4,6 +4,8 @@
 @import url(./__btn_like/element__btn_like.css);
 @import url(./__btn_delete/element__btn_delete.css);
 
+@import url(./__btn_like/_active/element__btn_like_active.css);
+
 .element {
 	border-radius: 10px;
 	overflow: hidden;
