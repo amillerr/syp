@@ -11,14 +11,9 @@
 	transition: .2s;
 }
 
-.profile__add-btn:focus {
-	outline: none;
-}
-
 .profile__add-btn:hover {
 	opacity: .6;
 }
-
 
 @media screen and (max-width: 890px) {
 	.profile__add-btn {

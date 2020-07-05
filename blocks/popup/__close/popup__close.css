@@ -13,10 +13,6 @@
   object-fit: cover;
 }
 
-.popup__close:focus {
-  outline: none;
-}
-
 .popup__close:hover {
   opacity: .6;
 }
