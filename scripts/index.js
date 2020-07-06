@@ -51,23 +51,29 @@ initialElements.forEach(function (elem) {
   placeList.append(showElem(elem))
 })
 
-// Открытие/Закрытие попапа
-const popupToggle = popup => {
-  popup.classList.toggle('popup_opened')
+// Открытие попапа
+function openPopup (e) {
+  e.classList.add('popup_opened');
 }
+
+// Закрытие попапа
+function closePopup (e) {
+  e.classList.remove('popup_opened');
+}
+
 
 // Popup Edit с заполнением
 function openPopupEdit() {
   newName.value = nameProfile.textContent
   newDescription.value = descriptionProfile.textContent
-  popupToggle(popupProfile)
+  openPopup(popupProfile)
 }
 
 // Popup Add пустой
 function openPopupAdd() {
   newElementName.value = '';
   newElementLink.value = '';
-  popupToggle(popupElement)
+  openPopup(popupElement)
 }
 
 // Добавить новый элемент
@@ -78,7 +84,7 @@ function elemSubmitHandler(e) {
     link: newElementLink.value,
   }
   placeList.prepend(showElem(addElem))
-  popupToggle(popupElement)
+  openPopup(popupElement)
 }
 
 // Popup Preview
@@ -88,7 +94,7 @@ function popupPreview(e) {
   elementPreview.src = elem.src
   elementPreview.alt = elem.alt
   elementTitle.textContent = elemTitle.textContent
-  popupToggle(popupImage)
+  openPopup(popupImage)
 }
 
 // Кнопка "Нравится"
@@ -107,14 +113,14 @@ function formSubmitHandler(e) {
   e.preventDefault()
   nameProfile.textContent = newName.value
   descriptionProfile.textContent = newDescription.value
-  popupToggle(popupProfile)
+  openPopup(popupProfile)
 }
 
 // Обработка событий
 openBtn.addEventListener('click', openPopupEdit)
 addBtn.addEventListener('click', openPopupAdd)
-closeEdit.addEventListener('click', () => {popupToggle(popupProfile)})
-closeAdd.addEventListener('click', () => {popupToggle(popupElement)})
-closePreview.addEventListener('click', () => {popupToggle(popupImage)})
+closeEdit.addEventListener('click', () => closePopup(popupProfile))
+closeAdd.addEventListener('click', () => closePopup(popupElement))
+closePreview.addEventListener('click', () => closePopup(popupImage))
 formAdd.addEventListener('submit', elemSubmitHandler)
 formEdit.addEventListener('submit', formSubmitHandler)
