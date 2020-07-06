@@ -34,11 +34,12 @@ const elementTitle =  popupImage.querySelector('.popup__image-title')
 // Выводим заготовленный массив элементов
 function showElem(elem) {
   const element = elementTemplate.content.cloneNode(true)
+  const imgCard = element.querySelector('.element__img')
   element.querySelector('.element__name').textContent = elem.name
-  element.querySelector('.element__img').src = elem.link
-  element.querySelector('.element__img').alt = elem.name
+  imgCard.src = elem.link
+  imgCard.alt = elem.name
 
-  element.querySelector('.element__img').addEventListener('click', popupPreview)
+  imgCard.addEventListener('click', popupPreview)
   element.querySelector('.element__btn_like').addEventListener('click', likeElement)
   element.querySelector('.element__btn_delete').addEventListener('click', removeElement)
 
