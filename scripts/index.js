@@ -48,9 +48,14 @@ function showElem(elem) {
 }
 
 // Отображение элементов массива
-initialElements.forEach(function (elem) {
-  placeList.append(showElem(elem))
-})
+// initialElements.forEach(function (elem) {
+//   placeList.append(showElem(elem))
+// })
+function renderCard(elem) {
+  const element = showElem(elem)
+  placeList.prepend(element)
+}
+initialElements.forEach(renderCard)
 
 // Открытие попапа
 function openPopup (e) {
@@ -84,8 +89,8 @@ function elemSubmitHandler(e) {
     name: newElementName.value,
     link: newElementLink.value,
   }
-  placeList.prepend(showElem(addElem))
-  openPopup(popupElement)
+  renderCard(addElem)
+  closePopup(popupElement)
 }
 
 // Popup Preview
