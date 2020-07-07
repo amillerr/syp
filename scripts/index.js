@@ -44,13 +44,9 @@ function showElem(elem) {
   element.querySelector('.element__btn_delete').addEventListener('click', removeElement)
 
   return element
-
 }
 
 // Отображение элементов массива
-// initialElements.forEach(function (elem) {
-//   placeList.append(showElem(elem))
-// })
 function renderCard(elem) {
   const element = showElem(elem)
   placeList.prepend(element)
@@ -66,7 +62,6 @@ function openPopup (e) {
 function closePopup (e) {
   e.classList.remove('popup_opened');
 }
-
 
 // Popup Edit с заполнением
 function openPopupEdit() {
