@@ -119,7 +119,7 @@ function formSubmitHandler(e) {
   e.preventDefault()
   nameProfile.textContent = newName.value
   descriptionProfile.textContent = newDescription.value
-  openPopup(popupProfile)
+  closePopup(popupProfile)
 }
 
 // Обработка событий
