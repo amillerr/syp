@@ -63,11 +63,37 @@ function closePopup (e) {
   e.classList.remove('popup_opened');
 }
 
+// Очистка полей и ошибок
+function resetInputsValues(form) {
+  const inputList = Array.from(form.querySelectorAll('.popup__input'))
+  inputList.forEach((input) => {
+    input.value = ''
+  })
+}
+
+function resetInputError(form) {
+  const inputList = Array.from(form.querySelectorAll('.popup__input'))
+  inputList.forEach((input) => {
+    hideInputError(form, input)
+  })
+}
+
 // Popup Edit с заполнением
 function openPopupEdit() {
   newName.value = nameProfile.textContent
   newDescription.value = descriptionProfile.textContent
   openPopup(popupProfile)
+  actualButtonState(popupProfile)
+  hideInputError(popupProfile, newName)
+  hideInputError(popupProfile, newDescription)
+   enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+  })
 }
 
 // Popup Add пустой
@@ -75,6 +101,17 @@ function openPopupAdd() {
   newElementName.value = '';
   newElementLink.value = '';
   openPopup(popupElement)
+  actualButtonState(popupElement)
+  resetInputsValues(popupElement)
+  resetInputError(popupElement)
+     enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+  })
 }
 
 // Добавить новый элемент
