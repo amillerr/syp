@@ -10,16 +10,16 @@ const config = {
 function showInputError(formSelector, inputSelector, errorMessage) {
   const formInputTextError = formSelector.querySelector(`#${inputSelector.id}-error`)
 
-  inputSelector.classList.add('popup__input_type_error')
-  formInputTextError.classList.add('popup__error_visible')
+  inputSelector.classList.add(config.inputErrorClass)
+  formInputTextError.classList.add(config.errorClass)
   formInputTextError.textContent = errorMessage
 }
 
 function hideInputError(formSelector, inputSelector) {
   const formInputTextError = formSelector.querySelector(`#${inputSelector.id}-error`)
 
-  inputSelector.classList.remove('popup__input_type_error')
-  formInputTextError.classList.remove('popup__error_visible')
+  inputSelector.classList.remove(config.inputErrorClass)
+  formInputTextError.classList.remove(config.errorClass)
   formInputTextError.textContent = ''
 }
 
@@ -39,16 +39,16 @@ function hasInvalidInput(inputList) {
 
 function buttonStateToggle(inputList, submitButtonSelector) {
   if (hasInvalidInput(inputList)) {
-    submitButtonSelector.classList.add('popup__button_disabled')
+    submitButtonSelector.classList.add(config.inactiveButtonClass)
     submitButtonSelector.setAttribute('disabled', true)
   } else {
-    submitButtonSelector.classList.remove('popup__button_disabled')
+    submitButtonSelector.classList.remove(config.inactiveButtonClass)
     submitButtonSelector.removeAttribute('disabled')
   }
 }
 
 function checkInputValidity(form) {
-  const inputList = Array.from(form.querySelectorAll('.popup__input'))
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector))
   return inputList.some((input) => {
     return input.value == ''
   })
@@ -56,17 +56,17 @@ function checkInputValidity(form) {
 
 function actualButtonState(form) {
   if (checkInputValidity(form)) {
-    form.querySelector('.popup__button').setAttribute('disabled', true)
-    form.querySelector('.popup__button').classList.add('popup__button_disabled')
+    form.querySelector(config.submitButtonSelector).setAttribute('disabled', true)
+    form.querySelector(config.submitButtonSelector).classList.add(config.inactiveButtonClass)
   } else {
-    form.querySelector('.popup__button').removeAttribute('disabled')
-    form.querySelector('.popup__button').classList.remove('popup__button_disabled')
+    form.querySelector(config.submitButtonSelector).removeAttribute('disabled')
+    form.querySelector(config.submitButtonSelector).classList.remove(config.inactiveButtonClass)
   }
 }
 
 function setEventListener(formSelector) {
-  const inputList = Array.from(formSelector.querySelectorAll('.popup__input'))
-  const submitButton = formSelector.querySelector('.popup__button')
+  const inputList = Array.from(formSelector.querySelectorAll(config.inputSelector))
+  const submitButton = formSelector.querySelector(config.submitButtonSelector)
   inputList.forEach((inputSelector) => {
     inputSelector.addEventListener('input', () => {
       isValid(formSelector, inputSelector)
@@ -76,7 +76,7 @@ function setEventListener(formSelector) {
 }
 
 function enableValidation() {
-  const formList = Array.from(document.querySelectorAll('.popup__form'))
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
   formList.forEach((formSelector) => {
     formSelector.addEventListener('submit', (e) => {
       e.preventDefault()

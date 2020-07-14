@@ -4,6 +4,7 @@ const nameProfile = profile.querySelector('.profile__name')
 const descriptionProfile = profile.querySelector('.profile__description')
 const openBtn = profile.querySelector('.profile__edit-btn')
 const addBtn = profile.querySelector('.profile__add-btn')
+const popups = document.querySelectorAll('.popup')
 
 // Переменные Popup Edit
 const popupProfile = document.querySelector('.popup__profile')
@@ -53,14 +54,24 @@ function renderCard(elem) {
 }
 initialElements.forEach(renderCard)
 
+
 // Открытие попапа
 function openPopup (e) {
   e.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEsc);
 }
 
 // Закрытие попапа
 function closePopup (e) {
   e.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEsc);
+}
+
+// Закрытие по Esc
+function handleEsc(event) {
+  if (event.key === "Escape") { 
+    closePopup(document.querySelector('.popup_opened'))
+  }
 }
 
 // Очистка полей и ошибок
@@ -83,17 +94,10 @@ function openPopupEdit() {
   newName.value = nameProfile.textContent
   newDescription.value = descriptionProfile.textContent
   openPopup(popupProfile)
-  actualButtonState(popupProfile)
   hideInputError(popupProfile, newName)
   hideInputError(popupProfile, newDescription)
-   enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-  })
+  actualButtonState(popupProfile)
+  enableValidation(config)
 }
 
 // Popup Add пустой
@@ -104,14 +108,7 @@ function openPopupAdd() {
   actualButtonState(popupElement)
   resetInputsValues(popupElement)
   resetInputError(popupElement)
-     enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-  })
+  enableValidation(config)
 }
 
 // Добавить новый элемент
@@ -123,6 +120,7 @@ function elemSubmitHandler(e) {
   }
   renderCard(addElem)
   closePopup(popupElement)
+
 }
 
 // Popup Preview
@@ -162,3 +160,13 @@ closeAdd.addEventListener('click', () => closePopup(popupElement))
 closePreview.addEventListener('click', () => closePopup(popupImage))
 formAdd.addEventListener('submit', elemSubmitHandler)
 formEdit.addEventListener('submit', formSubmitHandler)
+
+popupImage.addEventListener('click', (event) => {
+  if (event.target === event.currentTarget) { closePopup(popupImage); }
+});
+popupProfile.addEventListener('click', (event) => {
+  if (event.target === event.currentTarget) { closePopup(popupProfile); }
+});
+popupElement.addEventListener('click', (event) => {
+  if (event.target === event.currentTarget) { closePopup(popupElement); }
+});

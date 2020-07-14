@@ -5,4 +5,5 @@
   color: #000;
   user-select: none;
   cursor: default;
+  pointer-events: none;
 }
