@@ -6,7 +6,7 @@ const initialElements = [
     },
     {
         name: 'Нордфьорд, Норвегия',
-        link: 'https://b.radikal.ru/b35/2007/97/fc8e24289321.jpg'
+        link: 'https://i.ibb.co/MVXzSZ6/nordfjord.jpg'
     },
     {
         name: 'Брайес, Италия',
