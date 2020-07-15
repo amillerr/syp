@@ -93,7 +93,6 @@ function resetInputError(form) {
 function actualButtonState(form) {
   const inputList = Array.from(form.querySelectorAll(config.inputSelector))
   const submitButtonSelector = form.querySelector(config.submitButtonSelector)
-
   buttonStateToggle(inputList, submitButtonSelector)
 }
 
@@ -164,7 +163,6 @@ closeEdit.addEventListener('click', () => closePopup(popupProfile))
 closeAdd.addEventListener('click', () => closePopup(popupElement))
 closePreview.addEventListener('click', () => closePopup(popupImage))
 formAdd.addEventListener('submit', elemSubmitHandler)
-addBtn.addEventListener('click', () => buttonStateToggle('disabled'))
 formEdit.addEventListener('submit', formSubmitHandler)
 
 popupImage.addEventListener('click', (event) => {
