@@ -54,16 +54,6 @@ function checkInputValidity(form) {
   })
 }
 
-function actualButtonState(form) {
-  if (checkInputValidity(form)) {
-    form.querySelector(config.submitButtonSelector).setAttribute('disabled', true)
-    form.querySelector(config.submitButtonSelector).classList.add(config.inactiveButtonClass)
-  } else {
-    form.querySelector(config.submitButtonSelector).removeAttribute('disabled')
-    form.querySelector(config.submitButtonSelector).classList.remove(config.inactiveButtonClass)
-  }
-}
-
 function setEventListener(formSelector) {
   const inputList = Array.from(formSelector.querySelectorAll(config.inputSelector))
   const submitButton = formSelector.querySelector(config.submitButtonSelector)

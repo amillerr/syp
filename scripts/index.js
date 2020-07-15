@@ -76,17 +76,25 @@ function handleEsc(event) {
 
 // Очистка полей и ошибок
 function resetInputsValues(form) {
-  const inputList = Array.from(form.querySelectorAll('.popup__input'))
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector))
   inputList.forEach((input) => {
     input.value = ''
   })
 }
 
 function resetInputError(form) {
-  const inputList = Array.from(form.querySelectorAll('.popup__input'))
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector))
   inputList.forEach((input) => {
     hideInputError(form, input)
   })
+}
+
+// Переключение кнопки Submit
+function actualButtonState(form) {
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector))
+  const submitButtonSelector = form.querySelector(config.submitButtonSelector)
+
+  buttonStateToggle(inputList, submitButtonSelector)
 }
 
 // Popup Edit с заполнением
@@ -97,7 +105,6 @@ function openPopupEdit() {
   hideInputError(popupProfile, newName)
   hideInputError(popupProfile, newDescription)
   actualButtonState(popupProfile)
-  enableValidation(config)
 }
 
 // Popup Add пустой
@@ -105,10 +112,9 @@ function openPopupAdd() {
   newElementName.value = '';
   newElementLink.value = '';
   openPopup(popupElement)
-  actualButtonState(popupElement)
   resetInputsValues(popupElement)
   resetInputError(popupElement)
-  enableValidation(config)
+  actualButtonState(popupElement)
 }
 
 // Добавить новый элемент
@@ -120,7 +126,6 @@ function elemSubmitHandler(e) {
   }
   renderCard(addElem)
   closePopup(popupElement)
-
 }
 
 // Popup Preview
@@ -159,6 +164,7 @@ closeEdit.addEventListener('click', () => closePopup(popupProfile))
 closeAdd.addEventListener('click', () => closePopup(popupElement))
 closePreview.addEventListener('click', () => closePopup(popupImage))
 formAdd.addEventListener('submit', elemSubmitHandler)
+addBtn.addEventListener('click', () => buttonStateToggle('disabled'))
 formEdit.addEventListener('submit', formSubmitHandler)
 
 popupImage.addEventListener('click', (event) => {
@@ -170,3 +176,5 @@ popupProfile.addEventListener('click', (event) => {
 popupElement.addEventListener('click', (event) => {
   if (event.target === event.currentTarget) { closePopup(popupElement); }
 });
+
+ enableValidation(config)
