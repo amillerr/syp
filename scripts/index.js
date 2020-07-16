@@ -4,10 +4,9 @@ const nameProfile = profile.querySelector('.profile__name')
 const descriptionProfile = profile.querySelector('.profile__description')
 const openBtn = profile.querySelector('.profile__edit-btn')
 const addBtn = profile.querySelector('.profile__add-btn')
-const popups = document.querySelectorAll('.popup')
 
 // Переменные Popup Edit
-const popupProfile = document.querySelector('.popup__profile')
+const popupProfile = document.querySelector('.popup_profile')
 const formEdit = popupProfile.querySelector('.popup__form_edit')
 const closeEdit = popupProfile.querySelector('.popup__close_edit')
 const newName = popupProfile.querySelector('.popup__input_type_name')
@@ -20,20 +19,20 @@ const placeList = document.querySelector('.elements__list')
 const elementTemplate = document.querySelector('#elements-template')
 
 // Переменные Popup Element Add
-const popupElement = document.querySelector('.popup__element')
+const popupElement = document.querySelector('.popup_element')
 const closeAdd = popupElement.querySelector('.popup__close_element')
 const formAdd = popupElement.querySelector('.popup__form_add')
 const newElementName = popupElement.querySelector('.popup__input_type_place')
 const newElementLink = popupElement.querySelector('.popup__input_type_link')
 
 // Переменные Popup Preview
-const popupImage = document.querySelector('.popup__image')
+const popupImage = document.querySelector('.popup_image')
 const closePreview = popupImage.querySelector('.popup__close_image')
 const elementPreview = popupImage.querySelector('.popup__preview')
 const elementTitle =  popupImage.querySelector('.popup__image-title')
 
 // Выводим заготовленный массив элементов
-function showElem(elem) {
+function createElem(elem) {
   const element = elementTemplate.content.cloneNode(true)
   const imgCard = element.querySelector('.element__img')
   element.querySelector('.element__name').textContent = elem.name
@@ -49,30 +48,44 @@ function showElem(elem) {
 
 // Отображение элементов массива
 function renderCard(elem) {
-  const element = showElem(elem)
+  const element = createElem(elem)
   placeList.prepend(element)
 }
 initialElements.forEach(renderCard)
 
+// Закрытие по Overlay
 
-// Открытие попапа
-function openPopup (e) {
-  e.classList.add('popup_opened');
-  document.addEventListener('keydown', handleEsc);
-}
-
-// Закрытие попапа
-function closePopup (e) {
-  e.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleEsc);
-}
 
 // Закрытие по Esc
-function handleEsc(event) {
+function handleEsc (event) {
   if (event.key === "Escape") { 
     closePopup(document.querySelector('.popup_opened'))
   }
 }
+
+// Открытие попапа
+function openPopup (popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEsc)
+}
+
+// Закрытие попапа
+function closePopup (popup) {
+  if (event.target === event.currentTarget) {
+    popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEsc);
+  }
+}
+
+
+function handleOverlay(event) {
+  if (event.target === event.currentTarget) {
+    closePopup(popupProfile)
+    closePopup(popupElement)
+    closePopup(popupImage)
+  }
+}
+
 
 // Очистка полей и ошибок
 function resetInputsValues(form) {
@@ -165,14 +178,9 @@ closePreview.addEventListener('click', () => closePopup(popupImage))
 formAdd.addEventListener('submit', elemSubmitHandler)
 formEdit.addEventListener('submit', formSubmitHandler)
 
-popupImage.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) { closePopup(popupImage); }
-});
-popupProfile.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) { closePopup(popupProfile); }
-});
-popupElement.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) { closePopup(popupElement); }
-});
 
- enableValidation(config)
+popupProfile.addEventListener('click', handleOverlay)
+popupElement.addEventListener('click', handleOverlay)
+popupImage.addEventListener('click', handleOverlay)
+
+ 

@@ -47,13 +47,6 @@ function buttonStateToggle(inputList, submitButtonSelector) {
   }
 }
 
-function checkInputValidity(form) {
-  const inputList = Array.from(form.querySelectorAll(config.inputSelector))
-  return inputList.some((input) => {
-    return input.value == ''
-  })
-}
-
 function setEventListener(formSelector) {
   const inputList = Array.from(formSelector.querySelectorAll(config.inputSelector))
   const submitButton = formSelector.querySelector(config.submitButtonSelector)
@@ -74,3 +67,5 @@ function enableValidation() {
     setEventListener(formSelector)
   })
 }
+
+enableValidation(config)
