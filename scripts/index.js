@@ -53,8 +53,18 @@ function renderCard(elem) {
 }
 initialElements.forEach(renderCard)
 
-// Закрытие по Overlay
 
+// Открытие попапа
+function openPopup (event) {
+  event.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEsc)
+}
+
+// Закрытие попапа
+function closePopup (event) {
+  event.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEsc);
+}
 
 // Закрытие по Esc
 function handleEsc (event) {
@@ -63,21 +73,7 @@ function handleEsc (event) {
   }
 }
 
-// Открытие попапа
-function openPopup (popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', handleEsc)
-}
-
-// Закрытие попапа
-function closePopup (popup) {
-  if (event.target === event.currentTarget) {
-    popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleEsc);
-  }
-}
-
-
+// Закрытие по Overlay
 function handleOverlay(event) {
   if (event.target === event.currentTarget) {
     closePopup(popupProfile)
