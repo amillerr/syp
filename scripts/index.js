@@ -1,3 +1,6 @@
+import { initialElements } from './assets.js'
+import { FormValidator, config } from './FormValidator.js'
+
 // Переменные Profile
 const profile = document.querySelector('.profile')
 const nameProfile = profile.querySelector('.profile__name')
@@ -30,6 +33,12 @@ const popupImage = document.querySelector('.popup_image')
 const closePreview = popupImage.querySelector('.popup__close_image')
 const elementPreview = popupImage.querySelector('.popup__preview')
 const elementTitle =  popupImage.querySelector('.popup__image-title')
+
+const editFormValidation = new FormValidator(config, formEdit)
+const enableValidationEdit = editFormValidation.enableValidation()
+const addFormValidation = new FormValidator(config, formAdd)
+const enableValidationAdd = addFormValidation.enableValidation()
+
 
 // Выводим заготовленный массив элементов
 function createElem(elem) {
@@ -82,37 +91,12 @@ function handleOverlay(event) {
   }
 }
 
-
-// Очистка полей и ошибок
-function resetInputsValues(form) {
-  const inputList = Array.from(form.querySelectorAll(config.inputSelector))
-  inputList.forEach((input) => {
-    input.value = ''
-  })
-}
-
-function resetInputError(form) {
-  const inputList = Array.from(form.querySelectorAll(config.inputSelector))
-  inputList.forEach((input) => {
-    hideInputError(form, input)
-  })
-}
-
-// Переключение кнопки Submit
-function actualButtonState(form) {
-  const inputList = Array.from(form.querySelectorAll(config.inputSelector))
-  const submitButtonSelector = form.querySelector(config.submitButtonSelector)
-  buttonStateToggle(inputList, submitButtonSelector)
-}
-
 // Popup Edit с заполнением
 function openPopupEdit() {
   newName.value = nameProfile.textContent
   newDescription.value = descriptionProfile.textContent
   openPopup(popupProfile)
-  hideInputError(popupProfile, newName)
-  hideInputError(popupProfile, newDescription)
-  actualButtonState(popupProfile)
+  editFormValidation.resetForm()
 }
 
 // Popup Add пустой
@@ -120,9 +104,7 @@ function openPopupAdd() {
   newElementName.value = '';
   newElementLink.value = '';
   openPopup(popupElement)
-  resetInputsValues(popupElement)
-  resetInputError(popupElement)
-  actualButtonState(popupElement)
+  addFormValidation.resetForm()
 }
 
 // Добавить новый элемент
@@ -179,4 +161,19 @@ popupProfile.addEventListener('click', handleOverlay)
 popupElement.addEventListener('click', handleOverlay)
 popupImage.addEventListener('click', handleOverlay)
 
- 
+
+
+// // Очистка полей и ошибок
+// function resetInputsValues(form) {
+//   const inputList = Array.from(form.querySelectorAll(config.inputSelector))
+//   inputList.forEach((input) => {
+//     input.value = ''
+//   })
+// }
+
+// function resetInputError(form) {
+//   const inputList = Array.from(form.querySelectorAll(config.inputSelector))
+//   inputList.forEach((input) => {
+//     hideInputError(form, input)
+//   })
+// }

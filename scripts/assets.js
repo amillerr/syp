@@ -1,5 +1,5 @@
 // Подгружаем карточки
-const initialElements = [
+export const initialElements = [
     {
         name: 'Изельтвальд, Швейцария',
         link: 'https://c.radikal.ru/c35/2007/c5/e524155a627b.jpg'
