@@ -1,5 +1,6 @@
 import { initialElements } from './assets.js'
 import { FormValidator, config } from './FormValidator.js'
+import { Card } from './Card.js'
 
 // Переменные Profile
 const profile = document.querySelector('.profile')
@@ -16,10 +17,10 @@ const newName = popupProfile.querySelector('.popup__input_type_name')
 const newDescription = popupProfile.querySelector('.popup__input_type_description')
 
 // Переменные Elements
-const placeList = document.querySelector('.elements__list')
+export const placeList = document.querySelector('.elements__list')
 
 // Переменные Template
-const elementTemplate = document.querySelector('#elements-template')
+export const elementTemplate = document.querySelector('#elements-template')
 
 // Переменные Popup Element Add
 const popupElement = document.querySelector('.popup_element')
@@ -31,40 +32,34 @@ const newElementLink = popupElement.querySelector('.popup__input_type_link')
 // Переменные Popup Preview
 const popupImage = document.querySelector('.popup_image')
 const closePreview = popupImage.querySelector('.popup__close_image')
-const elementPreview = popupImage.querySelector('.popup__preview')
-const elementTitle =  popupImage.querySelector('.popup__image-title')
+export const elementPreview = popupImage.querySelector('.popup__preview')
+export const elementTitle =  popupImage.querySelector('.popup__image-title')
 
 const editFormValidation = new FormValidator(config, formEdit)
 const enableValidationEdit = editFormValidation.enableValidation()
 const addFormValidation = new FormValidator(config, formAdd)
 const enableValidationAdd = addFormValidation.enableValidation()
 
-
-// Выводим заготовленный массив элементов
-function createElem(elem) {
-  const element = elementTemplate.content.cloneNode(true)
-  const imgCard = element.querySelector('.element__img')
-  element.querySelector('.element__name').textContent = elem.name
-  imgCard.src = elem.link
-  imgCard.alt = elem.name
-
-  imgCard.addEventListener('click', popupPreview)
-  element.querySelector('.element__btn_like').addEventListener('click', likeElement)
-  element.querySelector('.element__btn_delete').addEventListener('click', removeElement)
-
-  return element
+// Добавление нового элемента
+function addCard(e) {
+  e.preventDefault()
+  const card = new Card(newElementLink.value, newElementName.value)
+  const cardElement = card.generateCard()
+  placeList.prepend(cardElement)
+  closePopup(popupElement)
 }
 
-// Отображение элементов массива
-function renderCard(elem) {
-  const element = createElem(elem)
-  placeList.prepend(element)
+// Отобразить массив элементов
+function renderCard() {
+  initialElements.reverse().forEach((item) => {
+    const card = new Card(item.name, item.link)
+    const cardElement = card.generateCard()
+    placeList.prepend(cardElement)
+  })
 }
-initialElements.forEach(renderCard)
-
 
 // Открытие попапа
-function openPopup (event) {
+export function openPopup (event) {
   event.classList.add('popup_opened');
   document.addEventListener('keydown', handleEsc)
 }
@@ -107,36 +102,14 @@ function openPopupAdd() {
   addFormValidation.resetForm()
 }
 
-// Добавить новый элемент
-function elemSubmitHandler(e) {
-  e.preventDefault()
-  const addElem = {
-    name: newElementName.value,
-    link: newElementLink.value,
-  }
-  renderCard(addElem)
-  closePopup(popupElement)
-}
-
 // Popup Preview
-function popupPreview(e) {
+export function popupPreview(e) {
   const elem = e.target
   const elemTitle = e.target.closest('.element')
   elementPreview.src = elem.src
   elementPreview.alt = elem.alt
   elementTitle.textContent = elemTitle.textContent
   openPopup(popupImage)
-}
-
-// Кнопка "Нравится"
-function likeElement(e) {
-  e.target.classList.toggle('element__btn_like_active')
-}
-
-// Удаление Элемента
-function removeElement(e) {
-  const element = e.target.closest('.element')
-  element.remove()
 }
 
 // Изменение Данных профиля
@@ -153,27 +126,10 @@ addBtn.addEventListener('click', openPopupAdd)
 closeEdit.addEventListener('click', () => closePopup(popupProfile))
 closeAdd.addEventListener('click', () => closePopup(popupElement))
 closePreview.addEventListener('click', () => closePopup(popupImage))
-formAdd.addEventListener('submit', elemSubmitHandler)
+formAdd.addEventListener('submit', addCard)
 formEdit.addEventListener('submit', formSubmitHandler)
 
-
+renderCard()
 popupProfile.addEventListener('click', handleOverlay)
 popupElement.addEventListener('click', handleOverlay)
 popupImage.addEventListener('click', handleOverlay)
-
-
-
-// // Очистка полей и ошибок
-// function resetInputsValues(form) {
-//   const inputList = Array.from(form.querySelectorAll(config.inputSelector))
-//   inputList.forEach((input) => {
-//     input.value = ''
-//   })
-// }
-
-// function resetInputError(form) {
-//   const inputList = Array.from(form.querySelectorAll(config.inputSelector))
-//   inputList.forEach((input) => {
-//     hideInputError(form, input)
-//   })
-// }
