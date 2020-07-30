@@ -17,10 +17,10 @@ const newName = popupProfile.querySelector('.popup__input_type_name')
 const newDescription = popupProfile.querySelector('.popup__input_type_description')
 
 // Переменные Elements
-export const placeList = document.querySelector('.elements__list')
+const placeList = document.querySelector('.elements__list')
 
 // Переменные Template
-export const elementTemplate = document.querySelector('#elements-template')
+const elementTemplate = document.querySelector('#elements-template').content
 
 // Переменные Popup Element Add
 const popupElement = document.querySelector('.popup_element')
@@ -36,14 +36,14 @@ export const elementPreview = popupImage.querySelector('.popup__preview')
 export const elementTitle =  popupImage.querySelector('.popup__image-title')
 
 const editFormValidation = new FormValidator(config, formEdit)
-const enableValidationEdit = editFormValidation.enableValidation()
+editFormValidation.enableValidation()
 const addFormValidation = new FormValidator(config, formAdd)
-const enableValidationAdd = addFormValidation.enableValidation()
+addFormValidation.enableValidation()
 
 // Добавление нового элемента
 function addCard(e) {
   e.preventDefault()
-  const card = new Card(newElementLink.value, newElementName.value)
+  const card = new Card(newElementName.value, newElementLink.value, elementTemplate)
   const cardElement = card.generateCard()
   placeList.prepend(cardElement)
   closePopup(popupElement)
@@ -52,7 +52,7 @@ function addCard(e) {
 // Отобразить массив элементов
 function renderCard() {
   initialElements.reverse().forEach((item) => {
-    const card = new Card(item.name, item.link)
+    const card = new Card(item.name, item.link, elementTemplate)
     const cardElement = card.generateCard()
     placeList.prepend(cardElement)
   })
@@ -80,9 +80,7 @@ function handleEsc (event) {
 // Закрытие по Overlay
 function handleOverlay(event) {
   if (event.target === event.currentTarget) {
-    closePopup(popupProfile)
-    closePopup(popupElement)
-    closePopup(popupImage)
+    closePopup(event.target)
   }
 }
 
@@ -130,6 +128,7 @@ formAdd.addEventListener('submit', addCard)
 formEdit.addEventListener('submit', formSubmitHandler)
 
 renderCard()
+
 popupProfile.addEventListener('click', handleOverlay)
 popupElement.addEventListener('click', handleOverlay)
 popupImage.addEventListener('click', handleOverlay)
