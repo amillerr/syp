@@ -113,13 +113,13 @@ export function popupPreview(e) {
   openPopup(popupImage)
 }
 
-// Изменение Данных профиля
-function formSubmitHandler(e) {
-  e.preventDefault()
-  nameProfile.textContent = newName.value
-  descriptionProfile.textContent = newDescription.value
-  closePopup(popupProfile)
-}
+// // Изменение Данных профиля
+// function formSubmitHandler(e) {
+//   e.preventDefault()
+//   nameProfile.textContent = newName.value
+//   descriptionProfile.textContent = newDescription.value
+//   closePopup(popupProfile)
+// }
 
 // Обработка событий
 openBtn.addEventListener('click', openPopupEdit)
@@ -130,7 +130,7 @@ closePreview.addEventListener('click', () => closePopup(popupImage))
 formAdd.addEventListener('submit', addCard)
 formEdit.addEventListener('submit', formSubmitHandler)
 
-renderCard()
+// renderCard()
 
 popupProfile.addEventListener('click', handleOverlay)
 popupElement.addEventListener('click', handleOverlay)
