@@ -19,6 +19,7 @@
       </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="JavaScript">
+      <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
       <option name="SPACE_BEFORE_METHOD_PARENTHESES" value="true" />
       <indentOptions>
         <option name="INDENT_SIZE" value="2" />

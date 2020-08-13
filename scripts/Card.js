@@ -1,9 +1,9 @@
 import {popupPreview} from './index.js'
 
 export class Card {
-  constructor(name, link, template) {
-    this._name = name
-    this._link = link
+  constructor(data, template) {
+    this._name = data.name
+    this._link = data.link
     this._template = template
   }
 

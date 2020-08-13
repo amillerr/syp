@@ -1,6 +1,9 @@
 import { initialElements } from './assets.js'
 import { FormValidator, config } from './FormValidator.js'
 import { Card } from './Card.js'
+import { Popup} from "./Popup";
+import { Section} from "./Section";
+
 
 // Переменные Profile
 const profile = document.querySelector('.profile')
@@ -40,42 +43,42 @@ editFormValidation.enableValidation()
 const addFormValidation = new FormValidator(config, formAdd)
 addFormValidation.enableValidation()
 
-// Добавление нового элемента
-function addCard(e) {
-  e.preventDefault()
-  const card = new Card(newElementName.value, newElementLink.value, elementTemplate)
-  const cardElement = card.generateCard()
-  placeList.prepend(cardElement)
-  closePopup(popupElement)
-}
+// // Добавление нового элемента
+// function addCard(e) {
+//   e.preventDefault()
+//   const card = new Card(newElementName.value, newElementLink.value, elementTemplate)
+//   const cardElement = card.generateCard()
+//   placeList.prepend(cardElement)
+//   closePopup(popupElement)
+// }
+//
+// // Отобразить массив элементов
+// function renderCard() {
+//   initialElements.reverse().forEach((item) => {
+//     const card = new Card(item.name, item.link, elementTemplate)
+//     const cardElement = card.generateCard()
+//     placeList.prepend(cardElement)
+//   })
+// }
 
-// Отобразить массив элементов
-function renderCard() {
-  initialElements.reverse().forEach((item) => {
-    const card = new Card(item.name, item.link, elementTemplate)
-    const cardElement = card.generateCard()
-    placeList.prepend(cardElement)
-  })
-}
-
-// Открытие попапа
-export function openPopup (event) {
-  event.classList.add('popup_opened');
-  document.addEventListener('keydown', handleEsc)
-}
-
-// Закрытие попапа
-function closePopup (event) {
-  event.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleEsc);
-}
-
-// Закрытие по Esc
-function handleEsc (event) {
-  if (event.key === "Escape") { 
-    closePopup(document.querySelector('.popup_opened'))
-  }
-}
+// // Открытие попапа
+// export function openPopup (event) {
+//   event.classList.add('popup_opened');
+//   document.addEventListener('keydown', handleEsc)
+// }
+//
+// // Закрытие попапа
+// function closePopup (event) {
+//   event.classList.remove('popup_opened');
+//   document.removeEventListener('keydown', handleEsc);
+// }
+//
+// // Закрытие по Esc
+// function handleEsc (event) {
+//   if (event.key === "Escape") {
+//     closePopup(document.querySelector('.popup_opened'))
+//   }
+// }
 
 // Закрытие по Overlay
 function handleOverlay(event) {
