@@ -35,11 +35,11 @@
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form popup__form_edit" novalidate>
           <label class="popup__label">
-            <input id="name-input" type="text" class="popup__input popup__input_type_name" name="name" placeholder="Имя" minlength="2" maxlength="40" required>
+            <input id="name-input" type="text" class="popup__input popup__input_type_name" name="user_name" placeholder="Имя" minlength="2" maxlength="40" required>
             <span id="name-input-error" class="popup__error"></span>
           </label>
           <label class="popup__label">
-            <input id="description-input" type="text" class="popup__input popup__input_type_description" name="description" placeholder="Описание" minlength="2" maxlength="200" required>
+            <input id="description-input" type="text" class="popup__input popup__input_type_description" name="user_description" placeholder="Описание" minlength="2" maxlength="200" required>
             <span id="description-input-error" class="popup__error"></span>
           </label>
           <button class="popup__button" type="submit">Сохранить</button>
@@ -53,11 +53,11 @@
         <h3 class="popup__title">Новое место</h3>
         <form class="popup__form popup__form_add" novalidate>
           <label class="popup__label">
-            <input id="place-input" type="text" class="popup__input popup__input_type_place" name="place-name" placeholder="Название" minlength="2" maxlength="30" required>
+            <input id="place-input" type="text" class="popup__input popup__input_type_place" name="place_name" placeholder="Название" minlength="2" maxlength="30" required>
             <span id="place-input-error" class="popup__error"></span>
           </label>
           <label class="popup__label">
-            <input id="link-input" type="url" class="popup__input popup__input_type_link" name="link" placeholder="Ссылка на картинку" required>
+            <input id="link-input" type="url" class="popup__input popup__input_type_link" name="place_link" placeholder="Ссылка на картинку" required>
             <span id="link-input-error" class="popup__error"></span>
           </label>
           <button class="popup__button" type="submit">Создать</button>
@@ -68,7 +68,7 @@
     <section class="popup popup_image">
       <figure class="popup__image_container">
         <button class="popup__close popup__close_image" type="button" aria-label="Закрыть"></button>
-        <img src="" alt="" class="popup__preview">
+        <img src="#" alt="" class="popup__preview">
         <figcaption class="popup__image-title"></figcaption>
       </figure>
     </section>
@@ -81,7 +81,7 @@
 <template id="elements-template">
   <div class="element">
     <button class="element__btn_delete"></button>
-    <img src="" class="element__img" alt="">
+    <img src="#" class="element__img" alt="">
     <div class="element__description">
       <h2 class="element__name"></h2>
       <button class="element__btn_like" type="button" aria-label="Нравиться"></button>

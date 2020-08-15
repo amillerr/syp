@@ -30,38 +30,50 @@ editFormValidation.enableValidation()
 const addFormValidation = new FormValidator(config, formAdd)
 addFormValidation.enableValidation()
 
-function addCard(data) {
-  return new Card(data, elementTemplate, popupImage).generateCard()
-}
-
-const section = new Section({
+const addCard = new Section({
   items: initialElements,
   renderer: (item) => {
-    section.addItem(addCard(item))
+   const card = new Card(item, elementTemplate, handleCardClick)
+    const cardElement = card.generateCard()
+    addCard.addItem(cardElement)
   }
 }, placeList)
-section.renderItems()
+addCard.renderer()
 
-const user = new UserInfo({name: newName, description: newDescription})
+const user = new UserInfo({
+  name: nameProfile,
+  description: descriptionProfile
+})
 
 const popupWithImage = new PopupWithImage(popupImage)
-popupWithImage.setEventListeners()
+function handleCardClick(data) {
+  popupWithImage.open(data)
+}
 
 const popupEditProfile = new PopupWithForm(popupEdit, () => {
-  new user.setUserInfo(user.getUserInfo())
+  user.setUserInfo(newName, newDescription)
+  popupEditProfile.close()
 })
-popupEditProfile.setEventListeners()
 
-const popupAddCard = new PopupWithForm(popupAdd, (data) => {
-  section.addItem(addCard(data))
+const popupAddCard = new PopupWithForm(popupAdd, (item) => {
+  const newCard = new Card(
+    { name: item.place_name, link: item.place_link },
+    elementTemplate, handleCardClick)
+  const cardElement = newCard.generateCard()
+  addCard.addItem(cardElement)
+  popupAddCard.close()
 })
+
+popupEditProfile.setEventListeners()
 popupAddCard.setEventListeners()
+popupWithImage.setEventListeners()
 
 editBtn.addEventListener('click', () => {
-  newName.value = nameProfile.textContent
-  newDescription.value = descriptionProfile.textContent
-  editFormValidation.resetForm()
   popupEditProfile.open()
+  const infoUser = user.getUserInfo()
+  newName.value = infoUser.user_name
+  newDescription.value = infoUser.user_description
+  editFormValidation.resetForm()
 })
 
 addBtn.addEventListener('click', () => {

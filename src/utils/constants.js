@@ -19,3 +19,6 @@ export const formAdd = popupAdd.querySelector('.popup__form_add')
 
 export const newName = popupEdit.querySelector('.popup__input_type_name')
 export const newDescription = popupEdit.querySelector('.popup__input_type_description')
+
+export const newCardName = popupAdd.querySelector('.popup__input_type_place')
+export const newCardLink = popupAdd.querySelector('.popup__input_type_link')

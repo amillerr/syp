@@ -5,13 +5,13 @@ export default class Section {
     this._container = containerSelector
     
   }
-  renderItems() {
-    this._items.forEach(item => {
+  renderer() {
+    this._items.reverse().forEach(item => {
       this._renderer(item)
     })
   }
 
-  addItem(elem) {
-    this._container.reverse().prepend(elem)
+  addItem(item) {
+    this._container.prepend(item)
   }
 }
