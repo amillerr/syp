@@ -7,7 +7,7 @@ export const config = {
   errorClass: 'popup__error_visible'
 }
 
-export class FormValidator {
+export default class FormValidator {
   constructor(config, form) {
     this._form = form
     this._inputSelector = config.inputSelector;
