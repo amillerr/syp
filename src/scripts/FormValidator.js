@@ -1,18 +1,18 @@
 export const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-}
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
 
 export default class FormValidator {
   constructor(config, form) {
-    this._form = form
+    this._form = form;
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
-    this._inactiveButtonClass = config.inactiveButtonClass
+    this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
   }
@@ -26,10 +26,10 @@ export default class FormValidator {
   }
 
   //Скрытие ошибок
-  _hideInputError(inputElement,) {
+  _hideInputError(inputElement) {
     const inputError = this._form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
-    inputError.textContent = '';
+    inputError.textContent = "";
     inputError.classList.remove(this._errorClass);
   }
 
@@ -44,7 +44,9 @@ export default class FormValidator {
 
   // Если один input невалиден
   _hasInvalidInput() {
-    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+    const inputList = Array.from(
+      this._form.querySelectorAll(this._inputSelector)
+    );
     return inputList.some((inputElement) => {
       return !inputElement.checkValidity();
     });
@@ -53,21 +55,25 @@ export default class FormValidator {
   // Состояние кнопки submit
   _buttonStateToggle() {
     const buttonElement = this._form.querySelector(this._submitButtonSelector);
-    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+    const inputList = Array.from(
+      this._form.querySelectorAll(this._inputSelector)
+    );
     if (this._hasInvalidInput(inputList)) {
-      buttonElement.classList.add(this._inactiveButtonClass)
-      buttonElement.setAttribute('disabled', true)
+      buttonElement.classList.add(this._inactiveButtonClass);
+      buttonElement.setAttribute("disabled", true);
     } else {
-      buttonElement.classList.remove(this._inactiveButtonClass)
-      buttonElement.removeAttribute('disabled')
+      buttonElement.classList.remove(this._inactiveButtonClass);
+      buttonElement.removeAttribute("disabled");
     }
   }
 
   //Обработка событий
   _setEventListeners(form) {
-    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+    const inputList = Array.from(
+      this._form.querySelectorAll(this._inputSelector)
+    );
     inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input', () => {
+      inputElement.addEventListener("input", () => {
         this._isValid(inputElement);
         this._buttonStateToggle();
       });
@@ -76,7 +82,7 @@ export default class FormValidator {
 
   //Вкл валидацию
   enableValidation() {
-    this._form.addEventListener('submit', (e) => {
+    this._form.addEventListener("submit", (e) => {
       e.preventDefault();
     });
     this._setEventListeners();
@@ -84,7 +90,9 @@ export default class FormValidator {
 
   //Очистка input от ошибок
   resetForm() {
-    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+    const inputList = Array.from(
+      this._form.querySelectorAll(this._inputSelector)
+    );
     inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
