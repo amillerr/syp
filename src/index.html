@@ -28,6 +28,22 @@
     <section class="elements">
       <ul class="elements__list"></ul>
     </section>
+
+    <!-- Popup change avatar-->
+    <section class="popup popup_avatar">
+      <div class="popup__container">
+        <button class="popup__close popup__close_edit" type="button" aria-label="Закрыть"></button>
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form class="popup__form popup__form_avatar" novalidate>
+          <label class="popup__label">
+            <input id="avatar-input" type="url" class="popup__input popup__input_type_avatar" name="avatar" placeholder="Ссылка на изображение" required>
+            <span id="avatar-input-error" class="popup__error"></span>
+          </label>
+          <button class="popup__button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
+
     <!-- Popup profile edit -->
     <section class="popup popup_profile">
       <div class="popup__container">
