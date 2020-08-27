@@ -3,6 +3,14 @@
 	height: 120px;
 	border-radius: 50%;
 	margin-right: 30px;
+	object-fit: cover;
+	position: relative;
+	cursor: pointer;
+}
+
+.profile__avatar:hover .profile__avatar_change {
+	display: block;
+	background: rgba(0, 0, 0, .8) url("../../../images/button/pencil.svg") no-repeat center;
 }
 
 @media screen and (max-width: 890px) {

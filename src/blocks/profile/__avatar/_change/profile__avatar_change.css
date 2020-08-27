@@ -1,0 +1,11 @@
+.profile__avatar_change {
+  position: absolute;
+  background: rgb(0, 0, 0) url(../../../../images/button/pencil.svg) no-repeat center;
+  display: none;
+  border: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
