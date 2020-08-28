@@ -13,10 +13,10 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo(data) {
-    this._user.textContent = data.name;
-    this._description.textContent = data.about;
-    this._avatar.src = data.avatar;
+  setUserInfo(name, description, avatar) {
+    this._user.textContent = name;
+    this._description.textContent = description;
+    this._avatar.src = avatar;
   }
   // setUserInfo(data) {
   //   this._user.textContent = data.user;
