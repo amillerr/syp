@@ -17,17 +17,14 @@ export const newName = popupEdit.querySelector(".popup__input_type_name");
 export const newDescription = popupEdit.querySelector(".popup__input_type_description");
 
 // Текущие значения полей
-export const profile = document.querySelector(".profile");
-export const nameProfile = profile.querySelector(".profile__name");
-export const descriptionProfile = profile.querySelector(".profile__description");
+export const nameProfile = document.querySelector(".profile__name");
+export const descriptionProfile = document.querySelector(".profile__description");
 export const avatarProfile = document.querySelector('.profile__avatar')
 
 // Валидация полей
 export const formEdit = popupEdit.querySelector(".popup__form_edit");
 export const formAdd = popupAdd.querySelector(".popup__form_add");
 export const formAvatar = popupAvatar.querySelector('.popup__form_avatar')
-
-
 
 export const userConfig = {
   name: nameProfile,

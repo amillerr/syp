@@ -29,18 +29,11 @@ const api = new Api(apiConfig)
 const myId = api.userId;
 
 Promise.all([api.getUserData(), api.getInitialCards()])
-  .then(([userData, res]) => {
-    user.setUserInfo(userData);
+  .then(([data, res]) => {
+    user.setUserInfo(data);
     serverCards.renderer(res);
   })
   .catch(err => console.log(err))
-
-// Promise.all([api.getUserData(), api.getInitialCards()])
-//   .then(([data, res]) => {
-//     user.setUserInfo(data);
-//     serverCards.renderer(res);
-//   })
-//   .catch(err => console.log(err))
 
 // Валидация форм
 const editFormValidation = new FormValidator(config, formEdit);
