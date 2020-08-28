@@ -18,12 +18,12 @@ export default class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    super.setEventListeners();
     this._popup.addEventListener("submit", (e) => {
       e.preventDefault();
       this.loadingHandler('Сохранение...');
       this._formSubmitHandler(this._getInputValues());
     });
+    super.setEventListeners();
   }
 
   open () {
@@ -33,6 +33,6 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._form.reset();
+    this._popup.querySelector('.popup__form').reset();
   }
 }

@@ -1,44 +1,46 @@
 import "./index.css";
+import FormValidator, {config} from "../scripts/FormValidator";
 import {
-  popupEdit,
-  popupAdd,
-  popupImage,
-  editBtn,
   addBtn,
-  placeList,
-  elementTemplate,
-  formEdit,
+  apiConfig,
+  avatarBtn,
+  editBtn,
   formAdd,
-  newName,
+  formAvatar,
+  formEdit,
   newDescription,
-  userConfig,
+  newName,
+  popupAdd,
   popupAvatar,
-  avatarBtn, formAvatar,
+  popupConfirm,
+  popupEdit,
+  popupImage,
+  userConfig
 } from "../utils/constants";
-import Card from "../scripts/Card";
-import FormValidator, { config } from "../scripts/FormValidator.js";
-import Section from "../scripts/Section";
-import PopupWithForm from "../scripts/PopupWithForm";
-import PopupWithImage from "../scripts/PopupWithImage";
+import Api from "../scripts/Api";
 import UserInfo from "../scripts/UserInfo";
 import PopupConfirm from "../scripts/PopupConfirm";
-import Api from "../scripts/Api.js";
+import Section from "../scripts/Section";
+import Card from "../scripts/Card";
+import PopupWithForm from "../scripts/PopupWithForm";
+import PopupWithImage from "../scripts/PopupWithImage";
 
-export const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-14",
-  headers: {
-    authorization: "c7ea0259-f390-4c4a-ac25-c955c79b8ace",
-    "Content-Type": "application/json"
-  }
-})
-
+const api = new Api(apiConfig)
+const myId = api.userId;
 
 Promise.all([api.getUserData(), api.getInitialCards()])
-  .then(([data, res]) => {
-    user.setUserInfo(data);
+  .then(([userData, res]) => {
+    user.setUserInfo(userData);
     serverCards.renderer(res);
   })
   .catch(err => console.log(err))
+
+// Promise.all([api.getUserData(), api.getInitialCards()])
+//   .then(([data, res]) => {
+//     user.setUserInfo(data);
+//     serverCards.renderer(res);
+//   })
+//   .catch(err => console.log(err))
 
 // Валидация форм
 const editFormValidation = new FormValidator(config, formEdit);
@@ -48,16 +50,16 @@ addFormValidation.enableValidation();
 const avatarFormValidation = new FormValidator(config, formAvatar);
 avatarFormValidation.enableValidation()
 
-const popupConfirm = new PopupConfirm('.popup_delete')
+const popupWithConfirm = new PopupConfirm(popupConfirm)
 
 const serverCards = new Section({
   renderer: (item => renderCards(item))
-}, placeList)
+}, '.elements__list')
 
 function renderCards(item) {
-  const card = new Card(item, elementTemplate, id, {
+  const card = new Card(item, '#elements-template', myId, {
     handleCardClick: () => {
-      popupWithImage.open(data)
+      popupWithImage.open(item.name, item.link)
     },
     handleConfirmClick: () => {
       popupWithConfirm.open()
@@ -74,7 +76,7 @@ function renderCards(item) {
     handleAddLike: () => {
       api.likeCard(item._id)
         .then((item) => {
-          card.likeCounter(item)
+          card.likeCounter(item.likes)
           card.likeElement()
         })
         .catch((err) => {
@@ -84,7 +86,7 @@ function renderCards(item) {
     handleDislike: () => {
       api.dislikeCard(item._id)
         .then((item) => {
-          card.likeCounter(item)
+          card.likeCounter(item.likes)
           card.likeElement()
         })
         .catch((err) => {
@@ -94,6 +96,7 @@ function renderCards(item) {
   })
   serverCards.addItem(card.generateCard())
 }
+
 const user = new UserInfo(userConfig)
 
 const popupChangeAvatar = new PopupWithForm(popupAvatar, {
@@ -108,8 +111,6 @@ const popupChangeAvatar = new PopupWithForm(popupAvatar, {
       })
   }
 })
-
-const popupWithConfirm = new PopupConfirm(popupConfirm)
 
 const popupWithImage = new PopupWithImage(popupImage);
 
@@ -145,19 +146,20 @@ popupAddCard.setEventListeners()
 popupWithImage.setEventListeners()
 
 editBtn.addEventListener("click", () => {
-  popupEditProfile.open();
   const infoUser = user.getUserInfo();
   newName.value = infoUser.user;
   newDescription.value = infoUser.description;
   editFormValidation.resetForm();
+  popupEditProfile.open();
 });
 
 addBtn.addEventListener("click", () => {
-  popupAddCard.open();
   addFormValidation.resetForm();
+  popupAddCard.open();
+
 });
 
 avatarBtn.addEventListener('click', () => {
-  popupChangeAvatar.open()
-  avatarFormValidation.resetForm()
+  avatarFormValidation.resetForm();
+  popupChangeAvatar.open();
 })

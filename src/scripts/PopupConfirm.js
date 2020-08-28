@@ -7,17 +7,17 @@ export default class PopupConfirm extends Popup {
   }
 
   setEventListeners () {
-    super.setEventListeners();
     this._confirmBtn.addEventListener('click', (e) => {
       e.preventDefault()
       this.loadingHandler('Удаление...')
       this._handleConfirm()
       this.close()
     })
+    super.setEventListeners();
   }
 
   setConfirmHandler(fn) {
-    this._handleConfirm = fn
+    this._handleConfirm = fn;
   }
 
   open () {

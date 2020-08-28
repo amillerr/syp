@@ -1,10 +1,11 @@
 export default class Card {
-  constructor(data, template, id,{ handleCardClick, handleConfirmClick, handleAddLike, handleDislike }) {
+  constructor(data, template, myId,{ handleCardClick, handleConfirmClick, handleAddLike, handleDislike }) {
+    this._id = data._id;
     this._name = data.name;
     this._link = data.link;
     this._template = template;
     this._likes = data.likes;
-    this._id = data._id;
+    this._myId = myId;
     this._owner = data.owner;
     this._handleCardClick = handleCardClick;
     this._handleConfirmClick = handleConfirmClick;
@@ -24,15 +25,9 @@ export default class Card {
     this._likeCard = this._cardElement.querySelector(".element__btn_like");
     this._removeCard = this._cardElement.querySelector(".element__btn_delete");
 
-    this._removeCard.addEventListener("click", () =>
-      this._handleConfirmClick(this._cardElement, this._cardId)
-    );
-    this._likeCard.addEventListener("click", () =>
-      this._handleAddLike(this._cardElement, this._isLiked(), this._cardId)
-    );
-    this._cardImage.addEventListener("click", () =>
-      this._handleCardClick(this._data)
-    );
+    this._removeCard.addEventListener("click", () => this._handleConfirmClick(this._cardElement));
+    this._likeCard.addEventListener("click", () => this._isLiked());
+    this._cardImage.addEventListener("click", () => this._handleCardClick);
   }
 
   _isLiked() {
@@ -68,11 +63,11 @@ export default class Card {
     imgLink.alt = this._name;
     countLike.textContent = `${this._likes.length}`;
 
-    if (this._likes.find((like) => like._id === this.myId)) {
+    if (this._likes.find((like) => like._id === this._myId)) {
       this._cardElement.querySelector('.element__btn_like').classList.add("element__btn_like_active");
     }
 
-    if (this._owner._id !== this.myId) {
+    if (this._owner._id !== this._myId) {
       removeCard.style.display = "none";
     }
 
