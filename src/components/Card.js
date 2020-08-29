@@ -33,7 +33,7 @@ export default class Card {
   }
 
   // Устанавливаем слушателей
-  _setEventListeners() {
+  _setCardListeners() {
     this._cardImage = this._card.querySelector(".element__img");
     this._likeCard = this._card.querySelector(".element__btn_like");
     this._removeCard = this._card.querySelector(".element__btn_delete");
@@ -93,7 +93,7 @@ export default class Card {
         .classList.add("element__btn_delete_active");
     }
 
-    this._setEventListeners();
+    this._setCardListeners();
     return this._card;
   }
 }

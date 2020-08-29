@@ -1,12 +1,12 @@
 import "./index.css";
-import FormValidator, { config } from "../scripts/FormValidator";
-import Api from "../scripts/Api";
-import UserInfo from "../scripts/UserInfo";
-import PopupConfirm from "../scripts/PopupConfirm";
-import Section from "../scripts/Section";
-import Card from "../scripts/Card";
-import PopupWithForm from "../scripts/PopupWithForm";
-import PopupWithImage from "../scripts/PopupWithImage";
+import FormValidator, { config } from "../components/FormValidator";
+import Api from "../components/Api";
+import UserInfo from "../components/UserInfo";
+import PopupConfirm from "../components/PopupConfirm";
+import Section from "../components/Section";
+import Card from "../components/Card";
+import PopupWithForm from "../components/PopupWithForm";
+import PopupWithImage from "../components/PopupWithImage";
 import {
   addBtn,
   apiConfig,
