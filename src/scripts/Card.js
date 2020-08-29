@@ -3,20 +3,26 @@ export default class Card {
     data,
     template,
     myId,
-    { handleCardClick, handleConfirmClick, handleAddLike, handleDislike }
+    {
+      handleCardClick,
+      handleConfirmClick,
+      handleAddLike,
+      handleDislike
+    }
   ) {
-    this._id = data._id;
     this._name = data.name;
     this._link = data.link;
-    this._template = template;
+    this._id = data._id;
     this._likes = data.likes;
-    this._myId = myId;
     this._owner = data.owner;
+    this._template = template;
+    this._myId = myId;
     this._handleCardClick = handleCardClick;
     this._handleConfirmClick = handleConfirmClick;
     this._handleAddLike = handleAddLike;
     this._handleDislike = handleDislike;
   }
+
 
   //Получаем шаблон из разметки
   _getTemplate() {
@@ -82,7 +88,9 @@ export default class Card {
     }
 
     if (this._owner._id === this._myId) {
-      this._card.classList.add("element__btn_delete_active");
+      this._card
+        .querySelector('.element__btn_delete')
+        .classList.add("element__btn_delete_active");
     }
 
     this._setEventListeners();
