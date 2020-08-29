@@ -9,8 +9,8 @@ export default class UserInfo {
     return {
       name: this._user.textContent,
       about: this._description.textContent,
-      avatar: this._avatar.src
-    }
+      avatar: this._avatar.src,
+    };
   }
 
   setUserInfo(data) {

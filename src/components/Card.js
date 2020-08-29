@@ -1,14 +1,11 @@
+import { myId } from "../utils/constants";
+
 export default class Card {
   constructor(
     data,
     template,
     myId,
-    {
-      handleCardClick,
-      handleConfirmClick,
-      handleAddLike,
-      handleDislike
-    }
+    { handleCardClick, handleConfirmClick, handleAddLike, handleDislike }
   ) {
     this._name = data.name;
     this._link = data.link;
@@ -22,7 +19,6 @@ export default class Card {
     this._handleAddLike = handleAddLike;
     this._handleDislike = handleDislike;
   }
-
 
   //Получаем шаблон из разметки
   _getTemplate() {
@@ -81,15 +77,15 @@ export default class Card {
     imgLink.alt = this._name;
     countLike.textContent = `${this._likes.length}`;
 
-    if (this._likes.find((like) => like._id === this._myId)) {
+    if (this._likes.find((like) => like._id === myId)) {
       this._card
         .querySelector(".element__btn_like")
         .classList.add("element__btn_like_active");
     }
 
-    if (this._owner._id === this._myId) {
+    if (this._owner._id === myId) {
       this._card
-        .querySelector('.element__btn_delete')
+        .querySelector(".element__btn_delete")
         .classList.add("element__btn_delete_active");
     }
 
