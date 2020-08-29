@@ -4,7 +4,7 @@ export default class Section {
     this._containerSelector = document.querySelector(containerSelector)
   }
 
-  renderer(items) {
+  renderCards(items) {
     items.reverse().forEach(item => {
       this._renderer(item)
     })

@@ -32,7 +32,7 @@ const user = new UserInfo(userConfig);
 Promise.all([api.getUserData(), api.getInitialCards()])
   .then(([userData, res]) => {
     user.setUserInfo(userData);
-    serverCards.renderer(res);
+    serverCards.renderCards(res);
   })
   .catch((err) => console.log(err));
 
