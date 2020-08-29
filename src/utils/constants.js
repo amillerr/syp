@@ -28,12 +28,13 @@ export const formAvatar = popupAvatar.querySelector('.popup__form_avatar')
 
 export const userConfig = {
   name: nameProfile,
-  description: descriptionProfile,
+  about: descriptionProfile,
   avatar: avatarProfile
 }
 
 export const apiConfig = {
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14',
+    userId: 'd6bec9d79b47efeaa62430dd',
     headers: {
       authorization: 'c7ea0259-f390-4c4a-ac25-c955c79b8ace',
       'Content-Type': 'application/json'

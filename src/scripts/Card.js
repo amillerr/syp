@@ -1,5 +1,10 @@
 export default class Card {
-  constructor(data, template, myId,{ handleCardClick, handleConfirmClick, handleAddLike, handleDislike }) {
+  constructor(
+    data,
+    template,
+    myId,
+    { handleCardClick, handleConfirmClick, handleAddLike, handleDislike }
+  ) {
     this._id = data._id;
     this._name = data.name;
     this._link = data.link;
@@ -15,48 +20,55 @@ export default class Card {
 
   //Получаем шаблон из разметки
   _getTemplate() {
-    this._cardElement = this._template.cloneNode(true);
-    return this._cardElement;
+    return document
+      .querySelector(this._template)
+      .content.querySelector(".element")
+      .cloneNode(true);
   }
 
   // Устанавливаем слушателей
   _setEventListeners() {
-    this._cardImage = this._cardElement.querySelector(".element__img");
-    this._likeCard = this._cardElement.querySelector(".element__btn_like");
-    this._removeCard = this._cardElement.querySelector(".element__btn_delete");
+    this._cardImage = this._card.querySelector(".element__img");
+    this._likeCard = this._card.querySelector(".element__btn_like");
+    this._removeCard = this._card.querySelector(".element__btn_delete");
 
-    this._removeCard.addEventListener("click", () => this._handleConfirmClick(this._cardElement));
+    this._removeCard.addEventListener("click", () =>
+      this._handleConfirmClick(this._card)
+    );
     this._likeCard.addEventListener("click", () => this._isLiked());
-    this._cardImage.addEventListener("click", () => this._handleCardClick);
+    this._cardImage.addEventListener("click", () => this._handleCardClick());
   }
 
   _isLiked() {
-    this._cardElement.classList.contains("element__btn_like_active")
-      ? this._handleDislike()
-      : this._handleAddLike();
+    const userLike = this._card.querySelector(".element__btn_like");
+    if (userLike.classList.contains("element__btn_like_active")) {
+      this._handleDislike();
+    } else {
+      this._handleAddLike();
+    }
   }
 
   likeElement() {
-    this._cardElement.querySelector('.element__btn_like').classList.toggle("element__btn_like_active");
+    this._card
+      .querySelector(".element__btn_like")
+      .classList.toggle("element__btn_like_active");
   }
 
   likeCounter(likes) {
-    const countValue = this._cardElement.querySelector(".element__like_counter")
-      countValue.textContent = likes.length;
+    const countValue = this._card.querySelector(".element__like_counter");
+    countValue.textContent = likes.length;
   }
 
   removeElement() {
-    this._cardElement.remove();
-    this._cardElement = null;
+    this._card.remove();
+    this._card = null;
   }
   generateCard() {
-    this._cardElement = this._getTemplate();
-    this._setEventListeners();
+    this._card = this._getTemplate();
 
-    const imgName = this._cardElement.querySelector(".element__name");
-    const imgLink = this._cardElement.querySelector(".element__img");
-    const countLike = this._cardElement.querySelector(".element__like_counter");
-    const removeCard = this._cardElement.querySelector(".element__btn_delete");
+    const imgName = this._card.querySelector(".element__name");
+    const imgLink = this._card.querySelector(".element__img");
+    const countLike = this._card.querySelector(".element__like_counter");
 
     imgName.textContent = this._name;
     imgLink.src = this._link;
@@ -64,13 +76,16 @@ export default class Card {
     countLike.textContent = `${this._likes.length}`;
 
     if (this._likes.find((like) => like._id === this._myId)) {
-      this._cardElement.querySelector('.element__btn_like').classList.add("element__btn_like_active");
+      this._card
+        .querySelector(".element__btn_like")
+        .classList.add("element__btn_like_active");
     }
 
-    if (this._owner._id !== this._myId) {
-      removeCard.style.display = "none";
+    if (this._owner._id === this._myId) {
+      this._card.classList.add("element__btn_delete_active");
     }
 
-    return this._cardElement;
+    this._setEventListeners();
+    return this._card;
   }
 }

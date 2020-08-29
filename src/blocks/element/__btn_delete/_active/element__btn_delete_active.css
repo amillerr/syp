@@ -1,0 +1,9 @@
+.element__btn_delete {
+  display: block;
+}
+
+.element__btn_delete:hover {
+  cursor: pointer;
+  opacity: .6;
+  transition: .2s ease-in-out;
+}
