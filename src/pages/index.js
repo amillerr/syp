@@ -4,7 +4,7 @@ import Api from "../components/Api";
 import UserInfo from "../components/UserInfo";
 import PopupConfirm from "../components/PopupConfirm";
 import Section from "../components/Section";
-import Card from "../components/Card";
+import Card           from "../components/Card";
 import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
 import {
@@ -23,7 +23,7 @@ import {
   popupEdit,
   popupImage,
   userConfig,
-} from "../utils/constants";
+}                from "../utils/constants";
 
 const api = new Api(apiConfig);
 const myId = api.userId;
@@ -97,8 +97,17 @@ function renderCards(item) {
   serverCards.addItem(card.generateCard());
 }
 
+function loading (submitBtn, ifLoading) {
+  if (ifLoading) {
+    submitBtn.textContent = 'Сохранение...'
+  } else {
+    submitBtn.textContent = 'Сохранить'
+  }
+}
+
 const popupChangeAvatar = new PopupWithForm(popupAvatar, {
-  submitForm: (item) => {
+  formSubmitHandler: (item) => {
+    loading(popupChangeAvatar._submitBtn, true)
     api
       .changeAvatar(item)
       .then((data) => {
@@ -107,14 +116,18 @@ const popupChangeAvatar = new PopupWithForm(popupAvatar, {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => {
+        loading(popupChangeAvatar._submitBtn, false)
+      })
   },
 });
 
 const popupWithImage = new PopupWithImage(popupImage);
 
 const popupEditProfile = new PopupWithForm(popupEdit, {
-  submitForm: (item) => {
+  formSubmitHandler: (item) => {
+    loading(popupChangeAvatar._submitBtn, true)
     api
       .setUserData(item)
       .then((res) => {
@@ -123,12 +136,16 @@ const popupEditProfile = new PopupWithForm(popupEdit, {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => {
+        loading(popupChangeAvatar._submitBtn, false)
+      })
   },
 });
 
 const popupAddCard = new PopupWithForm(popupAdd, {
-  submitForm: (item) => {
+  formSubmitHandler: (item) => {
+    loading(popupChangeAvatar._submitBtn, true)
     api
       .createCard(item)
       .then((item) => {
@@ -137,7 +154,10 @@ const popupAddCard = new PopupWithForm(popupAdd, {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => {
+        loading(popupChangeAvatar._submitBtn, false)
+      })
   },
 });
 

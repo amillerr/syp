@@ -2,7 +2,6 @@ export default class Popup {
   constructor(popup) {
     this._popup = popup;
     this._handleEscClose = this._handleEscClose.bind(this);
-    this._submitBtn = document.querySelector(".popup__button");
   }
 
   // Открытие попапа
@@ -34,9 +33,5 @@ export default class Popup {
       }
       this.close();
     });
-  }
-
-  loadingHandler(msg) {
-    this._submitBtn.textContent = msg;
   }
 }
