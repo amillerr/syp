@@ -23,7 +23,7 @@ import {
   popupEdit,
   popupImage,
   userConfig,
-}                from "../utils/constants";
+} from "../utils/constants";
 
 const api = new Api(apiConfig);
 const myId = api.userId;
@@ -97,17 +97,9 @@ function renderCards(item) {
   serverCards.addItem(card.generateCard());
 }
 
-function loading (submitBtn, ifLoading) {
-  if (ifLoading) {
-    submitBtn.textContent = 'Сохранение...'
-  } else {
-    submitBtn.textContent = 'Сохранить'
-  }
-}
-
 const popupChangeAvatar = new PopupWithForm(popupAvatar, {
   formSubmitHandler: (item) => {
-    loading(popupChangeAvatar._submitBtn, true)
+    popupChangeAvatar.loading('Сохранение...')
     api
       .changeAvatar(item)
       .then((data) => {
@@ -118,7 +110,7 @@ const popupChangeAvatar = new PopupWithForm(popupAvatar, {
         console.log(err);
       })
       .finally(() => {
-        loading(popupChangeAvatar._submitBtn, false)
+        popupChangeAvatar.loading('Сохранить')
       })
   },
 });
@@ -127,7 +119,7 @@ const popupWithImage = new PopupWithImage(popupImage);
 
 const popupEditProfile = new PopupWithForm(popupEdit, {
   formSubmitHandler: (item) => {
-    loading(popupChangeAvatar._submitBtn, true)
+    popupEditProfile.loading('Сохранение...')
     api
       .setUserData(item)
       .then((res) => {
@@ -138,14 +130,14 @@ const popupEditProfile = new PopupWithForm(popupEdit, {
         console.log(err);
       })
       .finally(() => {
-        loading(popupChangeAvatar._submitBtn, false)
+        popupEditProfile.loading('Сохранить')
       })
   },
 });
 
 const popupAddCard = new PopupWithForm(popupAdd, {
   formSubmitHandler: (item) => {
-    loading(popupChangeAvatar._submitBtn, true)
+    popupAddCard.loading('Сохранение...')
     api
       .createCard(item)
       .then((item) => {
@@ -156,7 +148,7 @@ const popupAddCard = new PopupWithForm(popupAdd, {
         console.log(err);
       })
       .finally(() => {
-        loading(popupChangeAvatar._submitBtn, false)
+        popupAddCard.loading('Создать')
       })
   },
 });
