@@ -1,7 +1,8 @@
 export default class Api {
-  constructor({ baseUrl, headers }) {
+  constructor({ baseUrl, userId, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
+    this.userId = userId;
   }
 
   getStatus(res) {
