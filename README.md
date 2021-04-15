@@ -5,7 +5,7 @@ ____
 [![N|Solid](https://pictures.s3.yandex.net/animation_topic/logo.svg)](https://praktikum.yandex.ru/)
 
 
-# Проектная работа №9 :  [Место ](https://amillerr.github.io/mesto/)
+# Проектная работа :  [Место ](https://amillerr.github.io/mesto/)
 
 В этой работе я применил следующие знания по темам :
 
