@@ -2,8 +2,6 @@
 
 ____
 
-[![N|Solid](https://pictures.s3.yandex.net/animation_topic/logo.svg)](https://praktikum.yandex.ru/)
-
 
 # Проектная работа :  [Место ](https://amillerr.github.io/mesto/)
 
