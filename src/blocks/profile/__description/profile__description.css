@@ -1,8 +1,7 @@
 .profile__description {
 	padding-top: 16px;
-	color: #fff;
 	font-weight: normal;
-	font-size: 18px;
+	font-size: 14px;
 	line-height: 22px;
 	text-overflow: ellipsis;
   white-space: nowrap;
@@ -12,7 +11,7 @@
 
 @media screen and (max-width: 582px) {
 	.profile__description {
-		font-size: 14px;
+		font-size: 10px;
 		line-height: 17px;
 	}
 }

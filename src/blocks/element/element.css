@@ -14,10 +14,12 @@
 
 
 .element {
-	border-radius: 10px;
-	overflow: hidden;
-	display: flex;
-  flex-direction: column;
-  max-width: 282px;
-	position: relative;
+  background: #fefefe;
+  box-shadow: 0 1px 2px rgb(34 25 25 / 40%);
+  margin: 2px auto 12px;
+  padding: 6px;
+  transition: opacity .4s ease-in-out;
+  display: inline-block;
+  min-width: 276px;
+  position: relative;
 }

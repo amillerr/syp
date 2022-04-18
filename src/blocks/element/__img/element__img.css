@@ -1,11 +1,7 @@
 .element__img {
-	flex-basis: 282px;
-	max-height: 282px;
-	object-fit: cover;
-	max-width: 100%;
-	align-self: stretch;
-}
-
-.element__img:hover {
+	width: 100%;
+  height: auto;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 8px;
 	cursor: pointer;
 }

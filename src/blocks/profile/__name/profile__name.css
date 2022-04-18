@@ -1,7 +1,6 @@
 .profile__name {
-  color: #fff;
   font-weight: 500;
-  font-size: 42px;
+  font-size: 32px;
   line-height: 56px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -12,6 +11,6 @@
 
 @media screen and (max-width: 582px) {
 	.profile__name {
-		font-size: 27px;
+		font-size: 22px;
 	}
 }

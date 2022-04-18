@@ -1,13 +1,12 @@
 .elements__list {
-	display: grid;
-	justify-content: center;
-	grid-template-columns: repeat(auto-fit, 282px);
-	grid-gap: 21px 18px;
-	margin: 0;
-  padding: 0;
+	padding: 0;
+	column-width: 276px;
+	column-gap: 10px;
+	max-width: 882px;
+	margin: 50px auto;
 }
 
-@media screen and (max-width: 890px) {
+/* @media screen and (max-width: 890px) {
 	.elements__list {
 		grid-template-columns: repeat(auto-fit, 282px);
 	}
@@ -19,3 +18,6 @@
   	margin: 0 auto;
 	}
 } 
+ */
+
+
