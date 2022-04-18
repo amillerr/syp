@@ -15,7 +15,7 @@
 .profile__add-btn{width:150px;height:50px;border:1px solid rgba(34,25,25,.4);border-radius:2px;background-image:url(./images/add-btn.svg);background-repeat:no-repeat;background-position:50%;cursor:pointer;outline:none;transition:.2s}.profile__add-btn:hover{opacity:.6}@media screen and (max-width:890px){.profile__add-btn{width:282px;background-image:url(./images/add-btn2.svg);background-repeat:no-repeat;background-position:50%;background-color:#fff}}
 .profile{display:flex;flex-direction:row;justify-content:space-between;width:100%;padding-top:40px;align-items:center;padding-bottom:20px;border-bottom:1px solid rgba(84,84,84,.4)}@media screen and (max-width:890px){.profile{flex-direction:column}}
 .elements__list{padding:0;-moz-column-width:276px;column-width:276px;-moz-column-gap:10px;column-gap:10px;max-width:882px;margin:50px auto}
-
+.elements:hover .element:not(:hover){opacity:.4}
 .element__img{width:100%;height:auto;border-bottom:1px solid #ccc;padding-bottom:8px;cursor:pointer}
 .element__description{background-color:#fff;display:flex;justify-content:space-between;align-items:center}
 .element__name{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;font-weight:600;font-size:18px;line-height:29px;max-width:210px;margin:10px 0 10px 21px}
